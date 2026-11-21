@@ -1,48 +1,39 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    long long int t; cin >> t;
+    long long int t;
+    cin >> t;
     while (t--)
     {
-        int n,m; cin >> n >> m;
-       for(int i = 0;i < n;i++)
+        int n, m;
+        cin >> n >> m;
+        char a[50][50];
+        for (int i = 0; i < n; i++)
         {
-            string s; cin >> s;
-            int fre[128] = {0};
-            for(int i = 0;i < s.size();i++)
+            for (int j = 0; j < m; j++)
             {
-                //char  val = s[i];
-                fre[s[i]]++;
+                cin >> a[i][j];
             }
-            int ans = 0;
-            for(int i = 65;i < 123;i++)
-            {
-                    if(fre[i]%2 == 0)
-                    {
-                        ans = fre[i];
-                    }
-            }
-            cout << ans << endl;
         }
-    //     map<char,int> count;
-        
-    //     for(int i = 0;i < s.size();i++)
-    //     {
-    //         count[s[i]]++;
-    //     }
-    //     for(int i = 0;i < t.size();i++)
-    //     {
-    //         count[t[i]]++;
-    //     }
-    //     for(auto [val,cont] : count)
-    //     {
-    //         cout << val <<" " << cont << endl ;
-    //     }
-    //    cout << endl;
+        int count = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                for (int k = 1; i + k < n && j + k < m; k++)
+                {
+                    if (a[i][j] == a[i][j + k] && a[i][j] == a[i + k][j] && a[i][j] == a[i + k][j + k])
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+        cout << count << endl;
     }
 
     return 0;

@@ -9,46 +9,36 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, k;
+        long long int n, k;
         cin >> n >> k;
         string s;
         cin >> s;
-        // int count_z = 0,count_o = 0;
-        // for (int i = 0; i < s.size(); i++)
-        // {
-        //     if(s[i] == '0') count_z++;
-        //     else count_o++;
-        // }
-        // if(count_z == k)
-        // {
-        //     cout << count_o + k << endl;
-        // }
-        // else if(count_z < k)
-        // {
-        //     cout << count_o + (k - count_z) << endl;
-        // }
-        // else{
-        //     cout << count_o + k << endl;
-        // }
-        //sort(s.begin(),s.end());
-        
-        
-        int ans = 1;
-        int zero = 0, one = 0;
-        for (int i = 0; i < s.size(); i++)
+
+        int last_one = -1;
+        long long int one = 0;
+        for (int i = 0; i < n; i++)
         {
-            if(s[i] == '0')
+            if (s[i] == '1')
+            {
+                one++;
+                last_one = i;
+            }
+        }
+
+        if (last_one == -1)
+        {
+            cout << 0 << endl;
+            continue;
+        }
+        long long int zero = 0;
+        for (int i = 0; i < last_one; i++)
+        {
+            if (s[i] == '0')
             {
                 zero++;
             }
-            else one++;
-
-            if(zero == one)
-            {
-                ans *=2;
-            }
         }
-        cout << ans << endl;
+        cout << one + min(k, zero) << endl;
     }
 
     return 0;

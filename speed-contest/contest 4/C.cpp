@@ -9,8 +9,8 @@ int main()
     while (t--)
     {
         int b,c; cin >> b >> c;
-        int a = c/__gcd(b,c);
-        cout << a << endl;
+        int ans = c/__gcd(b,c);
+        cout << ans << endl;
     }
     
     return 0;
